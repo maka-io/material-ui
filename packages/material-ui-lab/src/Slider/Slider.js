@@ -8,7 +8,7 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import clamp from '../utils/clamp';
 
-export const style = theme => {
+export const styles = theme => {
   const commonTransitionsOptions = {
     duration: theme.transitions.duration.short,
     easing: theme.transitions.easing.easeOut,
@@ -23,13 +23,11 @@ export const style = theme => {
 
   const colors = {
     primary: theme.palette.primary.main,
-    secondary: theme.palette.grey[400],
-    focused: theme.palette.grey[500],
     disabled: theme.palette.grey[400],
   };
 
   return {
-    // /* Styles for root node */
+    /* Styles applied to the root element. */
     root: {
       position: 'relative',
       width: '100%',
@@ -50,24 +48,25 @@ export const style = theme => {
         transform: 'scaleY(-1)',
       },
     },
+    /* Styles applied to the container element. */
     container: {
       position: 'relative',
       '&$vertical': {
         height: '100%',
       },
     },
-    /* Tracks styles */
+    /* Styles applied to the track elements. */
     track: {
       position: 'absolute',
       transform: 'translate(0, -50%)',
       top: '50%',
       height: 2,
+      backgroundColor: colors.primary,
       '&$focused, &$activated': {
         transition: 'none',
-        backgroundColor: colors.focused,
       },
       '&$disabled': {
-        backgroundColor: colors.secondary,
+        backgroundColor: colors.disabled,
       },
       '&$vertical': {
         transform: 'translate(-50%, 0)',
@@ -75,28 +74,23 @@ export const style = theme => {
         top: 'initial',
         width: 2,
       },
-      '&$jumped': {
-        backgroundColor: colors.focused,
-      },
     },
+    /* Styles applied to the track element before the thumb. */
     trackBefore: {
       zIndex: 1,
       left: 0,
-      backgroundColor: colors.primary,
       transition: commonTransitions,
-      '&$focused, &$activated, &$jumped': {
-        backgroundColor: colors.primary,
-      },
     },
+    /* Styles applied to the track element after the thumb. */
     trackAfter: {
       right: 0,
-      backgroundColor: colors.secondary,
+      opacity: 0.24,
       transition: commonTransitions,
       '&$vertical': {
         bottom: 0,
       },
     },
-    /* Thumb styles  */
+    /* Styles applied to the thumb element. */
     thumb: {
       position: 'absolute',
       zIndex: 2,
@@ -120,30 +114,23 @@ export const style = theme => {
         height: 9,
         backgroundColor: colors.disabled,
       },
-      '&$zero': {
-        border: `2px solid ${colors.disabled}`,
-        backgroundColor: 'transparent',
-      },
-      '&$focused$zero': {
-        border: `2px solid ${colors.focused}`,
-        backgroundColor: fade(colors.focused, 0.34),
-        boxShadow: `0px 0px 0px 9px ${fade(colors.focused, 0.34)}`,
-      },
-      '&$activated$zero': {
-        border: `2px solid ${colors.focused}`,
-      },
       '&$jumped': {
         width: 17,
         height: 17,
       },
     },
-    focused: {},
-    activated: {},
-    disabled: {},
-    zero: {},
-    vertical: {},
+    /* Class applied to the root element to trigger JSS nested styles if `reverse={true}` . */
     reverse: {},
+    /* Class applied to the track and thumb elements to trigger JSS nested styles if `disabled`. */
+    disabled: {},
+    /* Class applied to the track and thumb elements to trigger JSS nested styles if `jumped`. */
     jumped: {},
+    /* Class applied to the track and thumb elements to trigger JSS nested styles if `focused`. */
+    focused: {},
+    /* Class applied to the track and thumb elements to trigger JSS nested styles if `activated`. */
+    activated: {},
+    /* Class applied to the root, track and container to trigger JSS nested styles if `vertical`. */
+    vertical: {},
   };
 };
 
@@ -214,13 +201,13 @@ class Slider extends React.Component {
   state = { currentState: 'initial' };
 
   componentDidMount() {
-    if (this.container) {
-      this.container.addEventListener('touchstart', preventPageScrolling, { passive: false });
+    if (this.containerRef) {
+      this.containerRef.addEventListener('touchstart', preventPageScrolling, { passive: false });
     }
   }
 
   componentWillUnmount() {
-    this.container.removeEventListener('touchstart', preventPageScrolling, { passive: false });
+    this.containerRef.removeEventListener('touchstart', preventPageScrolling, { passive: false });
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -284,7 +271,7 @@ class Slider extends React.Component {
 
   handleClick = event => {
     const { min, max, vertical, reverse } = this.props;
-    const percent = calculatePercent(this.container, event, vertical, reverse);
+    const percent = calculatePercent(this.containerRef, event, vertical, reverse);
     const value = percentToValue(percent, min, max);
 
     this.emitChange(event, value, () => {
@@ -333,7 +320,7 @@ class Slider extends React.Component {
 
   handleMouseMove = event => {
     const { min, max, vertical, reverse } = this.props;
-    const percent = calculatePercent(this.container, event, vertical, reverse);
+    const percent = calculatePercent(this.containerRef, event, vertical, reverse);
     const value = percentToValue(percent, min, max);
 
     this.emitChange(event, value);
@@ -419,7 +406,7 @@ class Slider extends React.Component {
       [classes.activated]: !disabled && currentState === 'activated',
     };
 
-    const rootClasses = classNames(
+    const className = classNames(
       classes.root,
       {
         [classes.vertical]: vertical,
@@ -441,9 +428,7 @@ class Slider extends React.Component {
       [classes.vertical]: vertical,
     });
 
-    const thumbClasses = classNames(classes.thumb, commonClasses, {
-      [classes.zero]: percent === 0,
-    });
+    const thumbClasses = classNames(classes.thumb, commonClasses);
 
     const trackProperty = vertical ? 'height' : 'width';
     const thumbProperty = vertical ? 'top' : 'left';
@@ -454,7 +439,7 @@ class Slider extends React.Component {
     return (
       <Component
         role="slider"
-        className={rootClasses}
+        className={className}
         aria-valuenow={value}
         aria-valuemin={min}
         aria-valuemax={max}
@@ -463,8 +448,8 @@ class Slider extends React.Component {
         onMouseDown={this.handleMouseDown}
         onTouchStartCapture={this.handleTouchStart}
         onTouchMove={this.handleMouseMove}
-        ref={node => {
-          this.container = findDOMNode(node);
+        ref={ref => {
+          this.containerRef = findDOMNode(ref);
         }}
         {...other}
       >
@@ -557,4 +542,4 @@ Slider.defaultProps = {
   component: 'div',
 };
 
-export default withStyles(style, { name: 'MuiSlider', withTheme: true })(Slider);
+export default withStyles(styles, { name: 'MuiSlider', withTheme: true })(Slider);

@@ -202,6 +202,22 @@ const appList = [
     image: '/static/images/showcase/jdupont.jpg',
     source: 'https://github.com/jdupont/jdupont.github.io',
   },
+  {
+    title: 'Tentu',
+    description:
+      'A web app built with Material UI v1 and Firebase that offers the ' +
+      'user news and events of his interest.',
+    link: 'https://tentu.eus/',
+    image: '/static/images/showcase/tentu.jpg',
+  },
+  {
+    title: 'Typekev',
+    description:
+      'The personal website of a React and Blockchain developer. The code is open-source.',
+    image: '/static/images/showcase/typekev.jpg',
+    link: 'https://typekev.com/',
+    source: 'https://github.com/typekev/typekev-site',
+  },
 ];
 
 function Showcase(props) {

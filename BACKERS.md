@@ -1,6 +1,6 @@
 # Sponsors & Backers
 
-<p class="description">Support Material-UI’s development.</p>
+<p class="description">Support Material-UI’s development through donations.</p>
 
 Material-UI is an MIT-licensed open source project. It's an independent project with ongoing development made possible thanks to the support of these awesome backers. If you'd like to join them, please consider:
 - [Become a backer or sponsor on Patreon](https://www.patreon.com/oliviertassinari).
@@ -131,7 +131,8 @@ Bronze Sponsors are those who have pledged $100/month to $250/month to Material-
 | Ashwin Hegde | Eric Schultz | Conor Dunk | Jerome Wilson | Greenlink |
 | Jolse Maginnis | asmeikal | David Auffret | Naresh Bhatia | Henk van Hest |
 | Avétis KAZARIAN | Withinpixels | SIM KIM SIA | Renaud Bompuis | Yaron Malin |
-| Arvanitis Panagiotis | Jesse Weigel | Bogdan Mihai Nicolae | Dung Tran |
+| Arvanitis Panagiotis | Jesse Weigel | Bogdan Mihai Nicolae | Dung Tran | Kyle Pennell |
+| Kai Mit Pansen | Eric Nagy | Karens Grigorjancs |
 
 #### via [OpenCollective](https://opencollective.com/material-ui)
 

@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-const styles = {
+export const styles = {
+  /* Styles applied to the root element. */
   root: {
     display: 'table-header-group',
   },

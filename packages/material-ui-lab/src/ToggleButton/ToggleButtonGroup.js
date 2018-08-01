@@ -6,13 +6,14 @@ import hasValue from './hasValue';
 import isValueSelected from './isValueSelected';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     transition: theme.transitions.create('background,box-shadow'),
     background: 'transparent',
     borderRadius: 2,
     overflow: 'hidden',
   },
-
+  /* Styles applied to the root element if `selected={true}` or `selected="auto" and `value` set. */
   selected: {
     background: theme.palette.background.paper,
     boxShadow: theme.shadows[2],
@@ -110,7 +111,7 @@ ToggleButtonGroup.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If `true` only allow one of the child ToggleButton values to be selected.
+   * If `true`, only allow one of the child ToggleButton values to be selected.
    */
   exclusive: PropTypes.bool,
   /**
@@ -122,7 +123,7 @@ ToggleButtonGroup.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * If `true` render the group in a selected state. If `auto` (the default)
+   * If `true`, render the group in a selected state. If `auto` (the default)
    * render in a selected state if `value` is not empty.
    */
   selected: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['auto'])]),

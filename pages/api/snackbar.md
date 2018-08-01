@@ -16,7 +16,7 @@ title: Snackbar API
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">action</span> | <span class="prop-type">node |   | The action to display. |
-| <span class="prop-name">anchorOrigin</span> | <span class="prop-type">{ horizontal: union:&nbsp;number&nbsp;&#124;<br>&nbsp;enum:&nbsp;'left'&nbsp;&#124;<br>&nbsp;'center'&nbsp;&#124;<br>&nbsp;'right'<br><br>, vertical: union:&nbsp;number&nbsp;&#124;<br>&nbsp;enum:&nbsp;'top'&nbsp;&#124;<br>&nbsp;'center'&nbsp;&#124;<br>&nbsp;'bottom'<br><br> } | <span class="prop-default">{  vertical: 'bottom',  horizontal: 'center',}</span> | The anchor of the `Snackbar`. |
+| <span class="prop-name">anchorOrigin</span> | <span class="prop-type">{ horizontal: enum:&nbsp;'left'&nbsp;&#124;<br>&nbsp;'center'&nbsp;&#124;<br>&nbsp;'right'<br>, vertical: enum:&nbsp;'top'&nbsp;&#124;<br>&nbsp;'center'&nbsp;&#124;<br>&nbsp;'bottom'<br> } | <span class="prop-default">{  vertical: 'bottom',  horizontal: 'center',}</span> | The anchor of the `Snackbar`. |
 | <span class="prop-name">autoHideDuration</span> | <span class="prop-type">number |   | The number of milliseconds to wait before automatically calling the `onClose` function. `onClose` should then set the state of the `open` prop to hide the Snackbar. This behavior is disabled by default with the `null` value. |
 | <span class="prop-name">children</span> | <span class="prop-type">element |   | If you wish the take control over the children of the component you can use this property. When used, you replace the `SnackbarContent` component with the children. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
@@ -43,13 +43,17 @@ Any other properties supplied will be spread to the root element (native element
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `root`
-- `anchorOriginTopCenter`
-- `anchorOriginBottomCenter`
-- `anchorOriginTopRight`
-- `anchorOriginBottomRight`
-- `anchorOriginTopLeft`
-- `anchorOriginBottomLeft`
+
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">root</span> | Styles applied to the root element.
+| <span class="prop-name">anchorOriginTopCenter</span> | Styles applied to the root element if `anchorOrigin={{ 'top', 'center' }}`.
+| <span class="prop-name">anchorOriginBottomCenter</span> | Styles applied to the root element if `anchorOrigin={{ 'bottom', 'center' }}`.
+| <span class="prop-name">anchorOriginTopRight</span> | Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }}`.
+| <span class="prop-name">anchorOriginBottomRight</span> | Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }}`.
+| <span class="prop-name">anchorOriginTopLeft</span> | Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }}`.
+| <span class="prop-name">anchorOriginBottomLeft</span> | Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }}`.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Snackbar/Snackbar.js)

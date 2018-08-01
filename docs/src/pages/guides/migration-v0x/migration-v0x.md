@@ -1,6 +1,6 @@
 # Migration From v0.x
 
-<p class="description">Yeah, v1 has been released!</p>
+<p class="description">Yeah, v1 has been released! Take advantage of 2 years worth of effort.</p>
 
 ## FAQ
 
@@ -117,6 +117,52 @@ This will apply a change such as the following:
 
 -<RaisedButton />
 +<Button variant="contained" />
+```
+
+### Subheader
+
+```diff
+-import Subheader from 'material-ui/Subheader';
++import ListSubheader from '@material-ui/core/ListSubheader';
+
+-<Subheader>Sub Heading</Subheader>
++<ListSubheader>Sub Heading</ListSubheader>
+```
+
+### Toggle
+
+```diff
+-import Toggle from 'material-ui/Toggle';
++import Switch from '@material-ui/core/Switch';
+
+-<Toggle
+-  toggled={this.state.checkedA}
+-  onToggle={this.handleToggle}
+-/>
++<Switch
++  checked={this.state.checkedA}
++  onChange={this.handleSwitch()}
++/>
+```
+
+### Menu Item
+
+```diff
+-import MenuItem from 'material-ui/MenuItem';
++import MenuItem from '@material-ui/core/MenuItem';
+
+-<MenuItem primaryText="Profile" />
++<MenuItem>Profile</MenuItem>
+```
+
+### Font Icon
+
+```diff
+-import FontIcon from 'material-ui/FontIcon';
++import Icon from '@material-ui/core/Icon';
+
+-<FontIcon>home</FontIcon>
++<Icon>home</Icon>
 ```
 
 ### To be continued…

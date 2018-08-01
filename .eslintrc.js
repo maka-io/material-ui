@@ -105,5 +105,9 @@ module.exports = {
     'flowtype/use-flow-type': 'error',
 
     'prettier/prettier': 'error',
+
+    'jsx-a11y/label-has-associated-control': 'error',
+    'jsx-a11y/label-has-for': 'off',
+    'jsx-a11y/no-autofocus': 'off', // We are a library, people do what they want.
   },
 };

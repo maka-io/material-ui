@@ -1,7 +1,7 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from './switch-base.md';
+import markdown from './no-ssr.md';
 
 function Page() {
   return <MarkdownDocs markdown={markdown} />;

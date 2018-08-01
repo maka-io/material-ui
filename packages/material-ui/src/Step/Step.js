@@ -5,7 +5,9 @@ import warning from 'warning';
 import withStyles from '../styles/withStyles';
 
 export const styles = {
+  /* Styles applied to the root element. */
   root: {},
+  /* Styles applied to the root element if `orientation="horizontal"`. */
   horizontal: {
     paddingLeft: 8,
     paddingRight: 8,
@@ -16,11 +18,15 @@ export const styles = {
       paddingRight: 0,
     },
   },
+  /* Styles applied to the root element if `orientation="vertical"`. */
   vertical: {},
+  /* Styles applied to the root element if `alternativeLabel={true}`. */
   alternativeLabel: {
     flex: 1,
     position: 'relative',
   },
+  /* Styles applied to the root element if `completed={true}`. */
+  completed: {},
 };
 
 function Step(props) {
@@ -44,6 +50,7 @@ function Step(props) {
     classes[orientation],
     {
       [classes.alternativeLabel]: alternativeLabel,
+      [classes.completed]: completed,
     },
     classNameProp,
   );
