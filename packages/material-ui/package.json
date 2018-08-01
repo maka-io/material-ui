@@ -2,7 +2,7 @@
   "name": "@maka/material-ui",
   "private": false,
   "author": "Material-UI Team",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "React components that implement Google's Material Design.",
   "keywords": [
     "react",
