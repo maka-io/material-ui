@@ -1,6 +1,6 @@
 {
   "name": "@maka/material-ui",
-  "private": true,
+  "private": false,
   "author": "Material-UI Team",
   "version": "1.4.2",
   "description": "React components that implement Google's Material Design.",
